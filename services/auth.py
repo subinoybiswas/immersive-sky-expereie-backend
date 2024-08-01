@@ -21,7 +21,7 @@ router = APIRouter()
 user_db = UserDB()
 
 
-@router.post('/create', response_description="Create new user", status_code=status.HTTP_201_CREATED, response_model=TokenSchema)
+@router.post('/register', response_description="Create new user", status_code=status.HTTP_201_CREATED, response_model=TokenSchema)
 async def create_user(user: UserBase = Body(...)):
     # querying database to check if user already exist
     entity = await user_db.get_user_email(user.email)

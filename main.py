@@ -4,7 +4,7 @@ from database import DBConnection
 from contextlib import asynccontextmanager
 import os
 import dotenv
-from services import auth
+from services import auth, upload_image
 
 
 dotenv.load_dotenv()
@@ -48,6 +48,7 @@ app.add_middleware(
 #  I N C L U D E   R O U T E R S
 
 
-app.include_router(auth.router, prefix="/user")
+app.include_router(auth.router, prefix="/user", tags=["USER"])
+app.include_router(upload_image.router, prefix="/asset", tags=["ASSET"])
 
 
